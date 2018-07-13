@@ -14,7 +14,7 @@
   <div *ngFor="let post of posts; let i = index" class="list-group-item list-group-item-action flex-column align-items-start" (click)="selectedPost = i" [class.active]="selectedPost == i">
 
       <div class="d-flex w-100 justify-content-between">
-          <a href="https://old.reddit.com{{ post.permalink }}?sort=top" target="_blank">
+          <a href="https://old.reddit.com{{ post.permalink }}?sort=top" target="_blank" (keydown.enter)="$event.preventDefault()">
             <!-- [innerHTML] so that html entities (e.g. &amp;) are decoded -->
             <h5 class="mb-1" [innerHTML]="post.title"></h5>
           </a>

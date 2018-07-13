@@ -31,6 +31,9 @@ export class PostComponent implements OnInit {
     else if (event.key === 'k' && this.selectedPost > 0) {
       this.selectedPost--;
     }
+    else if (event.key === 'Enter' && this.selectedPost !== -1) {
+      window.open('https://old.reddit.com' + this.posts[this.selectedPost].permalink + '?sort=top');
+    }
   }
 
   ngOnInit() {
