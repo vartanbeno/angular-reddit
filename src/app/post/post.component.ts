@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { CommonService } from '../common.service';
@@ -18,6 +18,16 @@ export class PostComponent implements OnInit {
   public faArrowUp = faArrowUp;
 
   constructor(private dataService: DataService, private commonService: CommonService) { }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'j' && this.selectedPost < this.posts.length - 1) {
+      this.selectedPost++;
+    }
+    else if (event.key === 'k' && this.selectedPost > 0) {
+      this.selectedPost--;
+    }
+  }
 
   ngOnInit() {
     this.dataService.getPosts(
