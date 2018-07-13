@@ -2,7 +2,7 @@
 
   <h2>Conduct a search...</h2>
 
-  <form autocomplete="off">
+  <form autocomplete="off" (ngSubmit)="submitForm()">
 
     <div class="form-group row">
       <label for="subreddits" class="col-sm-3 col-form-label">Subreddit(s)</label>
@@ -42,7 +42,7 @@
 
     <div class="form-group row">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary btn-block btn-lg" (click)="submitForm()">Search</button>
+        <input type="submit" class="btn btn-primary btn-block btn-lg">
       </div>
     </div>
 
