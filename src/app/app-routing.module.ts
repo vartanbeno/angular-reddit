@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { PostComponent } from './post/post.component';
 import { FormComponent } from './form/form.component';
+import { ResultsComponent } from './results/results.component';
  
 export const routes: Routes = [
   { path: '', component: FormComponent },
-  { path: 'result', component: PostComponent }
+  { path: 'result', component: ResultsComponent }
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

@@ -7,12 +7,14 @@ import { PostComponent } from './post/post.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './form/form.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
-    FormComponent
+    FormComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
