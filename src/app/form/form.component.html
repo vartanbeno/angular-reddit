@@ -1,50 +1,47 @@
-<form action="">
-  <div class="form-group row">
-    <label for="subreddits" class="col-sm-2 col-form-label">Subreddit(s)</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="subreddits" placeholder="Subreddit(s)">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="numberOfPosts" class="col-sm-2 col-form-label">Number of posts</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="numberOfPosts" placeholder="Number of posts">
-    </div>
-  </div>
-
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Timespans</legend>
-      <div class="col-sm-10">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="timespan" id="hot" value="hot" checked>
-          <label class="form-check-label" for="hot">hot</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="timespan" id="new" value="new">
-          <label class="form-check-label" for="new">new</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="timespan" id="rising" value="rising">
-          <label class="form-check-label" for="rising">rising</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="timespan" id="controversial" value="controversial">
-          <label class="form-check-label" for="controversial">controversial</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="timespan" id="top" value="top">
-          <label class="form-check-label" for="top">top</label>
-        </div>
+<div class="search-form">
+  <form autocomplete="off">
+    <h2 class="form-signin-heading">Conduct a search...</h2>
+    <div class="form-group row">
+      <label for="subreddits" class="col-sm-3 col-form-label">Subreddit(s)</label>
+      <div class="col-sm-9">
+        <input type="email" class="form-control" id="subreddits" placeholder="Subreddit(s)">
       </div>
     </div>
-  </fieldset>
 
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" class="btn btn-primary">Search</button>
+    <div class="form-group row">
+      <label for="number-of-posts" class="col-sm-3 col-form-label">Number of posts</label>
+      <div class="col-sm-9">
+        <input type="number" class="form-control" id="number-of-posts" placeholder="Number of posts" min="1" max="100">
+      </div>
     </div>
-  </div>
 
-</form>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-3 pt-0">Sort by...</legend>
+        <div class="col-sm-9">
+          <div class="form-check" *ngFor="let sort of sorts">
+            <input class="form-check-input" type="radio" name="sort" id="{{ sort }}" value="{{ sort }}" (change)="setSortValue($event)">
+            <label class="form-check-label" for="{{ sort }}">{{ sort }}</label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group row" *ngIf="sortValue === 'top' || sortValue === 'controversial'">
+      <label for="timespan" class="col-sm-3 col-form-label">Timespan</label>
+      <div class="col-sm-9">
+        <select class="form-control" name="timespan" id="timespan">
+          <option value="" selected disabled>select a timespan</option>
+          <option *ngFor="let time of timespans" value="{{ time }}">{{ time }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Search</button>
+      </div>
+    </div>
+
+  </form>
+</div>
