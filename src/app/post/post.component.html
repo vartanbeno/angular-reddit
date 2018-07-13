@@ -14,7 +14,7 @@
   <div *ngFor="let post of posts; let i = index" class="list-group-item list-group-item-action flex-column align-items-start" (click)="selectedPost = i" [class.active]="selectedPost == i">
 
       <div class="d-flex w-100 justify-content-between">
-          <a href="https://old.reddit.com{{ post.permalink }}?sort=top" target="_blank" (keydown.enter)="$event.preventDefault()">
+          <a href="https://old.reddit.com{{ post.permalink }}?sort=top" target="_blank" (keydown.enter)="$event.preventDefault()" (click)="unfocus()">
             <!-- [innerHTML] so that html entities (e.g. &amp;) are decoded -->
             <h5 class="mb-1" [innerHTML]="post.title"></h5>
           </a>
@@ -30,7 +30,7 @@
       <div class="d-flex w-100 justify-content-between">
         <small><fa-icon class="upvotes" [icon]="faArrowUp"></fa-icon>&ensp;{{ post.ups }}</small>
         <small>
-          <a href="https://old.reddit.com/{{ post.subreddit_name_prefixed }}" target="_blank">
+          <a href="https://old.reddit.com/{{ post.subreddit_name_prefixed }}" target="_blank" (keydown.enter)="$event.preventDefault()" (click)="unfocus()">
             {{ post.subreddit_name_prefixed }}
           </a>
         </small>

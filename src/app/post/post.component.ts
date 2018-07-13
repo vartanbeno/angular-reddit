@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
 import { CommonService } from '../common.service';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -78,6 +77,12 @@ export class PostComponent implements OnInit {
 
     this.selectedPost = -1
 
+  }
+
+  unfocus() {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   }
 
 }
