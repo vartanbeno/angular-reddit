@@ -53,7 +53,7 @@ export class FormComponent implements OnInit {
       }
 
       if (this.commonService.timespan) {
-        params.timespan = this.commonService.timespan;
+        params['timespan'] = this.commonService.timespan;
       }
 
       this.router.navigate(['/result'], { queryParams: params });
