@@ -9,7 +9,11 @@ export class FormComponent implements OnInit {
 
   public sorts: Array<String> = ['hot', 'new', 'rising', 'controversial', 'top'];
   public timespans: Array<String> = ['all', 'year', 'month', 'week', 'day', 'hour'];
-  public sortValue: String = null;
+
+  public subreddits: Array<String>;
+  public numberOfPosts: number;
+  public sort: String;
+  public timespan: String;
 
   constructor() { }
 
@@ -18,9 +22,12 @@ export class FormComponent implements OnInit {
 
   setSortValue(e: any) {
     if (e.target.checked) {
-      this.sortValue = e.target.value;
-      console.log(this.sortValue);
+      this.sort = e.target.value;
     }
+  }
+
+  setTimespan(e: any) {
+    this.timespan = e.target.value;
   }
 
 }
