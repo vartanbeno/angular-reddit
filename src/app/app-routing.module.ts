@@ -6,7 +6,8 @@ import { ResultsComponent } from './results/results.component';
  
 export const routes: Routes = [
   { path: '', component: FormComponent },
-  { path: 'result', component: ResultsComponent }
+  { path: 'result/:subreddits/:numberOfPosts/:sort', component: ResultsComponent },
+  { path: 'result/:subreddits/:numberOfPosts/:sort/:timespan', component: ResultsComponent }
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

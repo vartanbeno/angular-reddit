@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { CommonService } from '../common.service';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -20,7 +21,14 @@ export class PostComponent implements OnInit {
 
   public sortBy: Array<String> = ['default', 'newest', 'oldest', 'most commented', 'most upvoted'];
 
-  constructor(private dataService: DataService, private commonService: CommonService) { }
+  constructor(private dataService: DataService, private commonService: CommonService, private route: ActivatedRoute) {
+    this.route.params.subscribe( params => {
+      this.commonService.subreddits = params.subreddits;
+      this.commonService.numberOfPosts = params.numberOfPosts;
+      this.commonService.sort = params.sort;
+      this.commonService.timespan = params.timespan;
+    })
+  }
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
