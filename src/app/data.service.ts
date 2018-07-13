@@ -8,8 +8,13 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getPosts() {
-    return this.http.get('https://www.reddit.com/r/nba/top.json?limit=10&t=all');
+  getPosts(
+    subreddits: String,
+    numberOfPosts: String,
+    sort: String,
+    timespan: String
+  ) {
+    return this.http.get(`https://www.reddit.com/r/${subreddits}/${sort}.json?limit=${numberOfPosts}&t=${timespan}`);
   }
 
 }

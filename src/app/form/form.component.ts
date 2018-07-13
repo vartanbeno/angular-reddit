@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -10,12 +12,12 @@ export class FormComponent implements OnInit {
   public sorts: Array<String> = ['hot', 'new', 'rising', 'controversial', 'top'];
   public timespans: Array<String> = ['all', 'year', 'month', 'week', 'day', 'hour'];
 
-  public subreddits: Array<String>;
-  public numberOfPosts: number;
-  public sort: String;
-  public timespan: String;
+  public subreddits: String = '';
+  public numberOfPosts: String = '';
+  public sort: String = '';
+  public timespan: String = '';
 
-  constructor() { }
+  constructor(private commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,8 +32,18 @@ export class FormComponent implements OnInit {
     this.timespan = e.target.value;
   }
 
-  search() {
-    // make GET request
+  submitForm() {
+    if (!this.subreddits || !this.sort) {
+      alert('You need to provide at least one subreddit and a sort value.')
+    }
+    else {
+      // in case of multiple subreddits, replace the space(s) between them with a plus (+)
+      this.commonService.subreddits = this.subreddits.replace(/ +(?= )/g,'').trim().replace(/\s+/g, '+');
+      this.commonService.numberOfPosts = this.numberOfPosts;
+      this.commonService.sort = this.sort;
+      this.commonService.timespan = this.timespan;
+      this.router.navigate(['/result']);
+    }
   }
 
 }

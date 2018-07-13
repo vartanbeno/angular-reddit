@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-post',
@@ -11,15 +12,20 @@ export class PostComponent implements OnInit {
 
   posts = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private commonService: CommonService) { }
 
   ngOnInit() {
-    this.dataService.getPosts().subscribe(data => {
+    this.dataService.getPosts(
+      this.commonService.subreddits,
+      this.commonService.numberOfPosts,
+      this.commonService.sort,
+      this.commonService.timespan,
+    ).subscribe(data => {
       let post;
       for (post in data['data']['children']) {
         this.posts.push(data['data']['children'][post]['data'])
       }
-      // console.log(data['data']['children'])
+      console.log(data['data']['children'])
     }
     )
   }
