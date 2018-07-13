@@ -69,6 +69,8 @@ export class PostComponent implements OnInit {
       case this.sortBy[4]:
         this.posts.sort((post1, post2) => post2['ups'] - post1['ups']);
         break;
+      default:
+        console.log('Something went wrong');
     }
 
     this.selectedPost = -1

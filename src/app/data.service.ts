@@ -14,7 +14,9 @@ export class DataService {
     sort: String,
     timespan: String
   ) {
-    return this.http.get(`https://www.reddit.com/r/${subreddits}/${sort}.json?limit=${numberOfPosts}&t=${timespan}`);
+    let url = `https://www.reddit.com/r/${subreddits}/${sort}.json?limit=${numberOfPosts}`;
+    url += (timespan) ? `&t=${timespan}` : '';
+    return this.http.get(url);
   }
 
 }

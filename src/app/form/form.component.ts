@@ -26,6 +26,9 @@ export class FormComponent implements OnInit {
     if (e.target.checked) {
       this.sort = e.target.value;
     }
+    if (!(this.sort === 'controversial') && !(this.sort === 'top')) {
+      this.timespan = '';
+    }
   }
 
   setTimespan(e: any) {
