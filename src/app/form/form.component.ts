@@ -30,4 +30,8 @@ export class FormComponent implements OnInit {
     this.timespan = e.target.value;
   }
 
+  search() {
+    // make GET request
+  }
+
 }
