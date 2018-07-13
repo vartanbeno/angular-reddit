@@ -45,8 +45,18 @@ export class FormComponent implements OnInit {
       this.commonService.numberOfPosts = this.numberOfPosts;
       this.commonService.sort = this.sort;
       this.commonService.timespan = this.timespan;
-      let url = `/result/${this.commonService.subreddits}/${this.commonService.numberOfPosts}/${this.commonService.sort}/${this.commonService.timespan}`;
-      this.router.navigate([url]);
+
+      let params = {
+        subreddits: this.commonService.subreddits,
+        numberOfPosts: this.commonService.numberOfPosts,
+        sort: this.commonService.sort
+      }
+
+      if (this.commonService.timespan) {
+        params.timespan = this.commonService.timespan;
+      }
+
+      this.router.navigate(['/result'], { queryParams: params });
     }
   }
 

@@ -22,7 +22,7 @@ export class PostComponent implements OnInit {
   public sortBy: Array<String> = ['default', 'newest', 'oldest', 'most commented', 'most upvoted'];
 
   constructor(private dataService: DataService, private commonService: CommonService, private route: ActivatedRoute) {
-    this.route.params.subscribe( params => {
+    this.route.queryParams.subscribe( params => {
       this.commonService.subreddits = params.subreddits;
       this.commonService.numberOfPosts = params.numberOfPosts;
       this.commonService.sort = params.sort;
