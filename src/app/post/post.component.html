@@ -4,14 +4,18 @@
     <a href="https://old.reddit.com{{ post.permalink }}?sort=top" target="_blank">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{ post.title }}</h5>
-        <!-- <small>{{ post.datePosted | date: 'medium' }}</small> -->
       </div>
 
-      <p class="mb-1">{{ post.subreddit_name_prefixed }}</p>
+      <span *ngIf="post.stickied" class="badge badge-success stickied">Stickied</span>
 
       <div class="d-flex w-100 justify-content-between">
-        <small class="upvotes">+{{ post.ups }}</small>
-        <span *ngIf="post.stickied" class="badge badge-success">Stickied</span>
+        <small><fa-icon class="comments" [icon]="faComments"></fa-icon>&ensp;{{ post.num_comments }}</small>
+        <small>{{ post.created_utc * 1000 | date: 'medium' }}</small>
+      </div>
+
+      <div class="d-flex w-100 justify-content-between">
+        <small><fa-icon class="upvotes" [icon]="faArrowUp"></fa-icon>&ensp;{{ post.ups }}</small>
+        <small>{{ post.subreddit_name_prefixed }}</small>
       </div>
     </a>
 

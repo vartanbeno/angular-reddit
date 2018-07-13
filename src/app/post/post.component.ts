@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { CommonService } from '../common.service';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-post',
@@ -10,7 +12,10 @@ import { CommonService } from '../common.service';
 })
 export class PostComponent implements OnInit {
 
-  posts = [];
+  public posts: any = [];
+  public selectedPost: number = -1;
+  public faComments = faComments;
+  public faArrowUp = faArrowUp;
 
   constructor(private dataService: DataService, private commonService: CommonService) { }
 
