@@ -12,7 +12,7 @@ export class DataService {
     subreddits: String,
     numberOfPosts: String,
     sort: String,
-    timespan: String
+    timespan: String = ''
   ) {
     let url = `https://www.reddit.com/r/${subreddits}/${sort}.json?limit=${numberOfPosts}`;
     url += (timespan) ? `&t=${timespan}` : '';
