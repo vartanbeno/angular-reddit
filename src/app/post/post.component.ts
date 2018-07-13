@@ -12,10 +12,14 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 })
 export class PostComponent implements OnInit {
 
-  public posts: any = [];
+  public posts: Array<any> = [];
+  public postsBackup: Array<any> = [];
+
   public selectedPost: number = -1;
   public faComments = faComments;
   public faArrowUp = faArrowUp;
+
+  public sortBy: Array<String> = ['default', 'newest', 'oldest', 'most commented', 'most upvoted'];
 
   constructor(private dataService: DataService, private commonService: CommonService) { }
 
@@ -30,7 +34,7 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.getPosts(
+    return this.dataService.getPosts(
       this.commonService.subreddits,
       this.commonService.numberOfPosts,
       this.commonService.sort,
@@ -40,9 +44,35 @@ export class PostComponent implements OnInit {
       for (post in data['data']['children']) {
         this.posts.push(data['data']['children'][post]['data'])
       }
-      console.log(data['data']['children'])
+      console.log(this.posts)
+      // copy not reference
+      this.postsBackup = this.posts.map(post => Object.assign({ }, post));
+    })
+  }
+
+  changeOrder(sort: String) {
+    console.log('Sorting by', sort);
+
+    switch(sort) {
+      case this.sortBy[0]:
+        this.posts = this.postsBackup.map(post => Object.assign({ }, post));
+        break;
+      case this.sortBy[1]:
+        this.posts.sort((post1, post2) => post2['created_utc'] - post1['created_utc']);
+        break;
+      case this.sortBy[2]:
+        this.posts.sort((post1, post2) => post1['created_utc'] - post2['created_utc']);
+        break;
+      case this.sortBy[3]:
+        this.posts.sort((post1, post2) => post2['num_comments'] - post1['num_comments']);
+        break;
+      case this.sortBy[4]:
+        this.posts.sort((post1, post2) => post2['ups'] - post1['ups']);
+        break;
     }
-    )
+
+    this.selectedPost = -1
+
   }
 
 }

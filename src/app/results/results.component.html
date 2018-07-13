@@ -10,17 +10,6 @@
   </header>
   
   <main role="main">
-    <fieldset class="form-group">
-      <div class="row">
-        <legend class="col-form-label col-sm-3 pt-0">Sort by...</legend>
-        <div class="col-sm-9">
-          <div class="form-check form-check-inline" *ngFor="let sort of sortBy">
-            <input class="form-check-input" type="radio" name="sort" id="{{ sort }}" value="{{ sort }}">
-            <label class="form-check-label" for="{{ sort }}">{{ sort }}</label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
     <app-post></app-post>
   </main>
   

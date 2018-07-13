@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class ResultsComponent implements OnInit {
 
   public date: Date;
-  public sortBy: Array<String> = ['default','newest', 'oldest', 'most comments', 'most upvotes'];
 
   constructor() { }
 
