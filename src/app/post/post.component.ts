@@ -21,6 +21,8 @@ export class PostComponent implements OnInit {
 
   public sortBy: Array<String> = ['default', 'newest', 'oldest', 'most commented', 'most upvoted'];
 
+  public activePost: any;
+
   constructor(private dataService: DataService, private commonService: CommonService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe( params => {
       this.commonService.subreddits = params.subreddits;
@@ -34,9 +36,11 @@ export class PostComponent implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key === 'j' && this.selectedPost < this.posts.length - 1) {
       this.selectedPost++;
+      this.scrollToActivePost(false);
     }
     else if (event.key === 'k' && this.selectedPost > 0) {
       this.selectedPost--;
+      this.scrollToActivePost(true);
     }
     else if (event.key === 'Enter' && this.selectedPost !== -1) {
       window.open('https://old.reddit.com' + this.posts[this.selectedPost].permalink + '?sort=top');
@@ -91,6 +95,27 @@ export class PostComponent implements OnInit {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
+  }
+
+  scrollToActivePost(alignTop: boolean) {
+    setTimeout(() => {
+      this.activePost = document.getElementsByClassName('active')[0];
+      console.log(this.activePost.getElementsByClassName('post-title')[0].textContent);
+      if (!this.isVisible(this.activePost)) {
+        this.activePost.scrollIntoView(alignTop);
+      }
+    }, 100);
+  }
+
+  isVisible(element: any) {
+    let rect = element.getBoundingClientRect();
+    let html = document.documentElement;
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || html.clientHeight) &&
+      rect.right <= (window.innerWidth || html.clientWidth)
+    );
   }
 
 }

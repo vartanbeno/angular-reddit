@@ -17,7 +17,7 @@
           <h5 *ngIf="post.stickied"><span class="badge badge-success stickied">Stickied</span></h5>
           <a href="https://old.reddit.com{{ post.permalink }}?sort=top" target="_blank" (keydown.enter)="$event.preventDefault()" (click)="unfocus()">
             <!-- [innerHTML] so that html entities (e.g. &amp;) are decoded -->
-            <h5 class="mb-1" [innerHTML]="post.title"></h5>
+            <h5 class="mb-1 post-title" [innerHTML]="post.title"></h5>
           </a>
       </div>
 
