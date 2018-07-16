@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +16,7 @@ export class FormComponent implements OnInit {
   public sort: String = '';
   public timespan: String = '';
 
-  constructor(private commonService: CommonService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -41,19 +40,19 @@ export class FormComponent implements OnInit {
     }
     else {
       // in case of multiple subreddits, replace the space(s) between them with a plus (+)
-      this.commonService.subreddits = this.subreddits.replace(/ +(?= )/g,'').trim().replace(/\s+/g, '+');
-      this.commonService.numberOfPosts = this.numberOfPosts;
-      this.commonService.sort = this.sort;
-      this.commonService.timespan = this.timespan;
+      let subreddits = this.subreddits.replace(/ +(?= )/g,'').trim().replace(/\s+/g, '+');
+      let numberOfPosts = this.numberOfPosts;
+      let sort = this.sort;
+      let timespan = this.timespan;
 
       let params = {
-        subreddits: this.commonService.subreddits,
-        numberOfPosts: this.commonService.numberOfPosts,
-        sort: this.commonService.sort
+        subreddits: subreddits,
+        numberOfPosts: numberOfPosts,
+        sort: sort
       }
 
-      if (this.commonService.timespan) {
-        params['timespan'] = this.commonService.timespan;
+      if (timespan) {
+        params['timespan'] = timespan;
       }
 
       this.router.navigate(['/result'], { queryParams: params });

@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { DataService } from '../data.service';
-import { CommonService } from '../common.service';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
@@ -23,12 +22,17 @@ export class PostComponent implements OnInit {
 
   public activePost: any;
 
-  constructor(private dataService: DataService, private commonService: CommonService, private route: ActivatedRoute) {
+  public subreddits: String;
+  public numberOfPosts: String;
+  public sort: String;
+  public timespan: String;
+
+  constructor(private dataService: DataService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe( params => {
-      this.commonService.subreddits = params.subreddits;
-      this.commonService.numberOfPosts = params.numberOfPosts;
-      this.commonService.sort = params.sort;
-      this.commonService.timespan = params.timespan;
+      this.subreddits = params.subreddits;
+      this.numberOfPosts = params.numberOfPosts;
+      this.sort = params.sort;
+      this.timespan = params.timespan;
     })
   }
 
@@ -49,10 +53,10 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     return this.dataService.getPosts(
-      this.commonService.subreddits,
-      this.commonService.numberOfPosts,
-      this.commonService.sort,
-      this.commonService.timespan,
+      this.subreddits,
+      this.numberOfPosts,
+      this.sort,
+      this.timespan,
     ).subscribe(data => {
       let post;
       for (post in data['data']['children']) {
