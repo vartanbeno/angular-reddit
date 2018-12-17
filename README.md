@@ -1,27 +1,16 @@
-# AngularReddit
+# Angular Reddit
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This is a fun little project in which I play around with the Reddit API.
 
-## Development server
+## Running
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+First, make sure you have Angular 6 installed. Then clone the repository and run `ng serve` to start up the application. Then visit [localhost:4200](https://localhost:4200).
 
-## Code scaffolding
+You will be presented with a form asking which subreddit(s) you'd like to query against, and the type/timespan of posts you'd like to get as results.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<div align="center">
+    <br/>
+    <img src="./images/form.png" alt="Form" />
+    <br/><br/>
+    <img src="./images/results.png" alt="Results" />
+</div>
